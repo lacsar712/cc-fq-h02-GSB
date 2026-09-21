@@ -23,7 +23,7 @@ router.beforeEach((to) => {
   if (!to.meta.public && !auth.token) {
     return { name: 'login', query: { redirect: to.fullPath } }
   }
-  if (to.meta.bioops && auth.role !== 'bioops' && auth.role !== 'auditor') {
+  if (to.meta.bioops && auth.role !== 'bioops') {
     return { name: 'jobs' }
   }
   if (to.name === 'login' && auth.token) {

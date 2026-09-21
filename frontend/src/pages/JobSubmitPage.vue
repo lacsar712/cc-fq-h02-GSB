@@ -2,11 +2,14 @@
   <q-page class="page-pad">
     <div class="text-h5 q-mb-md">提交质控作业</div>
 
-    <q-banner v-if="auth.role !== 'bioops'" class="bg-warning text-dark q-mb-md" rounded>
-      审计员不可提交作业，请使用 bioops 账号。
-    </q-banner>
+    <div v-if="auth.role !== 'bioops'" class="text-grey-7">
+      <q-banner class="bg-grey-3 text-dark q-mb-md" rounded>
+        审计员为只读角色，不可提交质控作业。请使用 bioops 运维账号。
+      </q-banner>
+      <q-btn flat color="primary" label="返回作业历史" to="/jobs" />
+    </div>
 
-    <q-card flat bordered>
+    <q-card v-else flat bordered>
       <q-card-section>
         <div class="text-subtitle1 q-mb-sm">方式一：选择 seed 样例</div>
         <q-select
@@ -76,6 +79,7 @@ async function load() {
 }
 
 async function submit() {
+  if (auth.role !== 'bioops') return
   if (!sampleId.value && !fastqText.value.trim()) {
     $q.notify({ type: 'warning', message: '请选择样例或粘贴 FASTQ 文本' })
     return

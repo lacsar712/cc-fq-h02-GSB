@@ -48,7 +48,6 @@
 </template>
 
 <script setup>
-import { canShowSubmit } from '../utils/submitPolicy.js'
 import { onMounted, ref } from 'vue'
 import { useQuasar } from 'quasar'
 import { listSamples } from '../api/client'
