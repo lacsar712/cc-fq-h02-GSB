@@ -33,7 +33,13 @@
       </q-card-section>
       <q-card-actions align="right">
         <q-btn flat label="取消" to="/samples" />
-        <q-btn color="primary" label="启动 Actor 流水线" :loading="submitting" @click="submit" />
+        <q-btn
+          v-if="auth.role === 'bioops'"
+          color="primary"
+          label="启动 Actor 流水线"
+          :loading="submitting"
+          @click="submit"
+        />
       </q-card-actions>
     </q-card>
   </q-page>

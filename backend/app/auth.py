@@ -63,7 +63,6 @@ def get_current_user(
 
 
 def require_bioops(user: dict = Depends(get_current_user)) -> dict:
-    from app.AuditorSubmitBypass import can_submit
-    if not can_submit(user):
+    if user.get("role") != "bioops":
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="仅运维账号可提交质控作业")
     return user

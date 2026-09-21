@@ -20,7 +20,6 @@
 </template>
 
 <script setup>
-import { canShowSubmit } from './utils/submitPolicy.js'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from './stores/auth'

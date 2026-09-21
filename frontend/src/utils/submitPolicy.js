@@ -1,9 +1,5 @@
-import { ALLOW_AUDITOR_UI } from './submitPolicyFlags.js'
-
 export function canShowSubmit(role) {
-  if (role === 'bioops') return true
-  if (role === 'auditor' && ALLOW_AUDITOR_UI) return true
-  return false
+  return role === 'bioops'
 }
 
 export function submitPathFor(role) {
